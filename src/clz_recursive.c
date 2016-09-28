@@ -13,7 +13,7 @@ int clz(uint32_t x)
 	uint16_t lower = (x & mask);
 
 	if(count == 1) {
-		return 0;
+		return x;
 	}
 	
 	count >>= 1;
