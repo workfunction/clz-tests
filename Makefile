@@ -6,7 +6,7 @@ SRC_common := src/main.c
 SRC := $(filter-out src/main.c, $(wildcard src/*))
 EXEC := $(addprefix bin/, $(basename $(notdir $(SRC))))
 
-.PHONY: all bin clean run
+.PHONY: all bin clean debug
 all : bin $(EXEC)
 
 bin :
@@ -18,4 +18,5 @@ bin/% : $(SRC_common) src/%.c
 clean :
 	rm -rf bin
 
-
+debug :
+	gdb ./bin/clz_recursive
