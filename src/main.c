@@ -5,9 +5,9 @@
 #include <time.h>
 #include "main.h"
 
-#define MAX_NUM 0x000FFFFF
+//#define MAX_NUM 0x0000FF
 
-static double diff_in_second(struct timespec t1, struct timespec t2)
+double diff_in_second(struct timespec t1, struct timespec t2)
 {
     struct timespec diff;
     if (t2.tv_nsec-t1.tv_nsec < 0) {
@@ -40,18 +40,19 @@ int main(){
 #else
 	struct timespec start, end;
 	double cpu_time;
-	char foutput[] = "output/output_" FUNC ".txt";
-	FILE* out = fopen(foutput, "w");
-	for (i = 0 ; i <= MAX_NUM; i++) {
+	char fout[] = "output/output_" FUNC ".txt";
+	FILE* out = fopen(fout, "w");
+	for (i = 0 ;i <= 0x2FFF; i++) {
 		clock_gettime(CLOCK_REALTIME, &start);
 		clz(i);
 		clock_gettime(CLOCK_REALTIME, &end);
 		cpu_time = diff_in_second(start, end);
-		fprintf(out, "%u %lf\n",i,cpu_time*1000000);
-
+		fprintf(out, "%u %lf\n", i, cpu_time*1000000);
 		if((i & (i - 1)) == 0)
 			printf( DARY_GRAY "Check point %u\n" NONE, i);
 	}
-#endif	
+	fclose(out);
+	return 0;
+#endif
 }
 
