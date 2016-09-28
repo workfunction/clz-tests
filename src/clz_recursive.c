@@ -1,4 +1,5 @@
 #include "main.h"
+#define REC 1
 
 uint32_t count = 16;
 uint32_t mask  = 0xFFFFFFFF;

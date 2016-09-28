@@ -1,22 +1,36 @@
 CC ?= gcc
-CFLAGS_common = -Wall -std=gnu99 -O0 -g
+CFLAGS_common = -std=gnu99 -O0 -g
+CFLAGS_omp = -fopenmp -lgomp
 
 SRC_common := src/main.c
 
 SRC := $(filter-out src/main.c, $(wildcard src/*))
 EXEC := $(addprefix bin/, $(basename $(notdir $(SRC))))
 
-.PHONY: all bin clean debug
+.PHONY: all bin clean check run
+
 all : bin $(EXEC)
+
+check :
+	make --eval=CHK=1
 
 bin :
 	mkdir -p bin
 
 bin/% : $(SRC_common) src/%.c
-	$(CC) $(CFLAGS_common) $^ -I./inc/ -o $@
+ifeq ($(CHK), 1)
+	$(CC) $(CFLAGS_common) $(CFLAGS_omp) -DCHK $^ -I./inc/ -o $@
+else
+	$(CC) $(CFLAGS_common) -DFUNC='"$*"' $^ -I./inc/ -o $@
+endif
 
 clean :
-	rm -rf bin
+	rm -rf bin output
 
-debug :
-	gdb ./bin/clz_recursive
+run :
+	mkdir -p output
+	./bin/clz_binary_search
+	./bin/clz_byte_shift
+	./bin/clz_Harley
+	./bin/clz_iteration
+	./bin/clz_recursive
