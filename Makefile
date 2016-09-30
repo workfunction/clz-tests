@@ -36,7 +36,7 @@ run :
 	./bin/clz_iteration
 	./bin/clz_recursive
 
-plot : $(wildcard output/*)
+plot : clean run $(wildcard output/*)
 	gnuplot script/plot.gp
 	eog result.png
 
