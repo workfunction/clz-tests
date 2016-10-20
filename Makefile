@@ -35,6 +35,7 @@ run :
 	./bin/clz_Harley
 	./bin/clz_iteration
 	./bin/clz_recursive
+	./bin/clz_hardware
 
 plot : $(wildcard output/*)
 	gnuplot script/plot.gp

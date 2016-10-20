@@ -6,7 +6,7 @@ set term png enhanced font 'Verdana,10'
 set output 'result.png'
 #set format y "%.6f"
 
-plot [:][0:2] 'output/output_clz_binary_search.txt' using 1:2 with linespoints title "binary_search", \
+plot [:][0:2] 'output/output_clz_hardware.txt' using 1:2 with linespoints title "Hardware", \
 	'output/output_clz_Harley.txt' using 1:2 with linespoints title "Harley" \
 #	'output/output_clz_recursive.txt' using 1:2 with linespoints title "recursive", \
 #	'output/output_clz_byte_shift.txt' using 1:2 with linespoints title "byte_shift", \

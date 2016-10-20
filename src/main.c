@@ -5,7 +5,7 @@
 #include <time.h>
 #include "main.h"
 
-//#define MAX_NUM 0x0000FF
+//#define MAX_NUM 0x00FFFF
 
 double diff_in_second(struct timespec t1, struct timespec t2)
 {
