@@ -37,7 +37,7 @@ run :
 	./bin/clz_recursive
 	./bin/clz_hardware
 
-plot : $(wildcard output/*)
+plot : clean run $(wildcard output/*)
 	gnuplot script/plot.gp
 	eog result.png
 
